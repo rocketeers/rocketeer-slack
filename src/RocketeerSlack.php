@@ -1,5 +1,5 @@
 <?php
-namespace Rocketeer\Plugins;
+namespace Rocketeer\Plugins\Slack;
 
 use Illuminate\Container\Container;
 use Crummy\Phlack\Phlack;

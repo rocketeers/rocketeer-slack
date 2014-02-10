@@ -1,5 +1,5 @@
 <?php
-namespace Rocketeer\Plugins;
+namespace Rocketeer\Plugins\Slack;
 
 use Illuminate\Support\ServiceProvider;
 use Rocketeer\Facades\Rocketeer;

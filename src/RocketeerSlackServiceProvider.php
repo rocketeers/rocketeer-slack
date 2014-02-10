@@ -26,6 +26,6 @@ class RocketeerSlackServiceProvider extends ServiceProvider
    */
   public function boot()
   {
-    Rocketeer::plugin('Rocketeer\Plugins\RocketeerSlack');
+    Rocketeer::plugin('Rocketeer\Plugins\Slack\RocketeerSlack');
   }
 }

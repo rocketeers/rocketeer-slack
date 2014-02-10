@@ -1,0 +1,28 @@
+{
+	"name": "anahkiasen/rocketeer-slack",
+	"description": "Slack plugin for Rocketeer",
+  "license": "MIT",
+  "keywords": [
+    "rocketeer",
+    "deployment",
+    "slack",
+    "laravel"
+  ],
+	"authors": [
+		{
+			"name": "Maxime Fabre",
+			"email": "ehtnam6@gmail.com"
+		}
+	],
+	"require": {
+		"php": ">=5.3.0",
+		"illuminate/support": "~4",
+		"mcrumm/phlack": "dev-master"
+	},
+	"autoload": {
+		"psr-4": {
+			"Rocketeer\\Plugins\\": "src"
+		}
+	},
+	"minimum-stability": "dev"
+}

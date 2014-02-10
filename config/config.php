@@ -15,7 +15,7 @@ return array(
 	// 4: Host
 	'message' => '{1} finished deploying branch "{2}" on "{3}" ({4})',
 
-	// Default emoji
-	'emoji'   => 'ghost',
+	// Default emoji to use as the bot's avatar
+	'emoji'   => 'rocket',
 
 );

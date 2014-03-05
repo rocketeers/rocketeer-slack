@@ -15,7 +15,7 @@ Then you'll need to set it up, so do `artisan config:publish anahkiasen/rocketee
 Once that's done add the following to your providers array in `app/config/app.php` :
 
 ```php
-'Rocketeer\Plugins\RocketeerSlackServiceProvider',
+'Rocketeer\Plugins\Slack\RocketeerSlackServiceProvider',
 ```
 
 And that's pretty much it.

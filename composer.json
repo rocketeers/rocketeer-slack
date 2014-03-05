@@ -17,7 +17,7 @@
 	"require": {
 		"php": ">=5.3.0",
 		"illuminate/support": "~4",
-		"mcrumm/phlack": "0.5"
+		"mcrumm/phlack": "dev-master"
 	},
 	"autoload": {
 		"psr-4": {

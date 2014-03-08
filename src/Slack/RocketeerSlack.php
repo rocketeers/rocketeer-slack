@@ -53,7 +53,7 @@ class RocketeerSlack extends Notifier
    *
    * @return void
    */
-  protected function send($message)
+  public function send($message)
   {
     $messageBuilder = $this->slack->getMessageBuilder();
     $room    = $this->config->get('rocketeer-slack::room');

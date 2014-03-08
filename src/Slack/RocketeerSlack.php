@@ -14,7 +14,7 @@ class RocketeerSlack extends Notifier
   {
     parent::__construct($app);
 
-    $this->configurationFolder = __DIR__.'/config';
+    $this->configurationFolder = __DIR__.'/../config';
   }
 
   /**

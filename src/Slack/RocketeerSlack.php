@@ -105,6 +105,12 @@ class RocketeerSlack extends Notifier
     return $response;
   }
 
+  /**
+   * Prepare message and send it.
+   * @param  [type] $task
+   * @param  string $message
+   * @return void
+   */
   private function prepareAndSend($task, $message = 'message_prepare')
   {
     // Don't send a notification if pretending to deploy

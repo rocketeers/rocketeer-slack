@@ -38,31 +38,13 @@ class RocketeerSlack extends Notifier
 
     $queue->before('deploy', function ($task) use ($me) {
 
-      // Don't send a notification if pretending to deploy
-      if ($task->command->option('pretend')) {
-        return;
-      }
-
-      $me->message = 'message_prepare';
-
-      // Build message and send it
-      $message = $me->makeMessage();
-      $me->send($message);
+      $this->prepareAndSend($task, 'message_prepare');
 
     }, -10);
 
     $queue->after('deploy', function ($task) use ($me) {
 
-      // Don't send a notification if pretending to deploy
-      if ($task->command->option('pretend')) {
-        return;
-      }
-
-      $me->message = 'message_finish';
-
-      // Build message and send it
-      $message = $me->makeMessage();
-      $me->send($message);
+      $this->prepareAndSend($task, 'message_finish');
 
     }, -10);
   }
@@ -121,5 +103,19 @@ class RocketeerSlack extends Notifier
     $response = $this->slack->send($messageBuilder->create());
 
     return $response;
+  }
+
+  private function prepareAndSend($task, $message = 'message_prepare')
+  {
+    // Don't send a notification if pretending to deploy
+    if ($task->command->option('pretend')) {
+      return;
+    }
+
+    $this->message = $message;
+
+    // Build message and send it
+    $message = $this->makeMessage();
+    $this->send($message);
   }
 }

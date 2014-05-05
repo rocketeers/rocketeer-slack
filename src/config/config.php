@@ -13,7 +13,8 @@ return array(
 	// 2: Branch
 	// 3: Connection and stage
 	// 4: Host
-	'message' => '{1} finished deploying branch "{2}" on "{3}" ({4})',
+	'message_finish' => '{1} finished deploying branch "{2}" on "{3}" ({4})',
+	'message_prepare' => '{1} is deploying "{2}" on "{3}" ({4})',
 
 	// Default emoji to use as the bot's avatar
 	'emoji'   => 'rocket',

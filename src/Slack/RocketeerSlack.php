@@ -4,9 +4,17 @@ namespace Rocketeer\Plugins\Slack;
 use Crummy\Phlack\Phlack;
 use Illuminate\Container\Container;
 use Rocketeer\Plugins\Notifier;
+use Rocketeer\TasksHandler;
 
 class RocketeerSlack extends Notifier
 {
+
+  /**
+   * What message to print.
+   * @var string
+   */
+  protected $message;
+
   /**
    * Setup the plugin
    */
@@ -15,6 +23,48 @@ class RocketeerSlack extends Notifier
     parent::__construct($app);
 
     $this->configurationFolder = __DIR__.'/../config';
+  }
+
+  /**
+   * Register Tasks with Rocketeer
+   *
+   * @param TasksHandler $queue
+   *
+   * @return void
+   */
+  public function onQueue(TasksHandler $queue)
+  {
+    $me = $this;
+
+    $queue->before('deploy', function ($task) use ($me) {
+
+      // Don't send a notification if pretending to deploy
+      if ($task->command->option('pretend')) {
+        return;
+      }
+
+      $me->message = 'message_prepare';
+
+      // Build message and send it
+      $message = $me->makeMessage();
+      $me->send($message);
+
+    }, -10);
+
+    $queue->after('deploy', function ($task) use ($me) {
+
+      // Don't send a notification if pretending to deploy
+      if ($task->command->option('pretend')) {
+        return;
+      }
+
+      $me->message = 'message_finish';
+
+      // Build message and send it
+      $message = $me->makeMessage();
+      $me->send($message);
+
+    }, -10);
   }
 
   /**
@@ -43,7 +93,7 @@ class RocketeerSlack extends Notifier
    */
   protected function getMessageFormat()
   {
-    return $this->app['config']->get('rocketeer-slack::message');
+      return $this->app['config']->get('rocketeer-slack::' . $this->message);
   }
 
   /**

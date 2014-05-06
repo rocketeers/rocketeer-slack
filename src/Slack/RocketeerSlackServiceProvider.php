@@ -5,7 +5,7 @@ use Illuminate\Support\ServiceProvider;
 use Rocketeer\Facades\Rocketeer;
 
 /**
- * Register the Campfire plugin with the Laravel framework and Rocketeer
+ * Register the Slack plugin with the Laravel framework and Rocketeer
  */
 class RocketeerSlackServiceProvider extends ServiceProvider
 {

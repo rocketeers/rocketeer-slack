@@ -39,11 +39,13 @@ class RocketeerSlack extends Notifier
   /**
    * Get the default message format
    *
+   * @param string $message The message handle
+   *
    * @return string
    */
-  protected function getMessageFormat()
+  protected function getMessageFormat($message)
   {
-    return $this->app['config']->get('rocketeer-slack::message');
+    return $this->app['config']->get('rocketeer-slack::'.$message);
   }
 
   /**

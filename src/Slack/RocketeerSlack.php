@@ -10,6 +10,8 @@ class RocketeerSlack extends AbstractNotifier
 {
 	/**
 	 * Setup the plugin
+	 *
+	 * @param Container $app
 	 */
 	public function __construct(Container $app)
 	{

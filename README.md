@@ -10,7 +10,7 @@ To setup add this to your `composer.json` and update :
 "anahkiasen/rocketeer-slack": "dev-master"
 ```
 
-Then you'll need to set it up, so do `artisan config:publish anahkiasen/rocketeer-slack` and complete the configuration in `app/packages/anahkiasen/rocketeer-slack/config.php`.
+Then you'll need to set it up, so do `artisan config:publish rocketeer/rocketeer-slack` and complete the configuration in `app/packages/rocketeer/rocketeer-slack/config.php`.
 
 Once that's done add the following to your providers array in `app/config/app.php` :
 

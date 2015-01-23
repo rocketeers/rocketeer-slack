@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2.0.2 - 2015-01-23
+
+### Added
+- Added default message for rollback event
+
 ## 2.0.1 - 2014-10-27
 
 ### Fixed

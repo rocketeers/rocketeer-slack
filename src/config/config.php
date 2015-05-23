@@ -3,9 +3,9 @@
 return array(
 
 	// Slack room credentials
+	'url'      => '',
 	'username' => '',
 	'room'     => '',
-	'token'    => '',
 
 	// Message
 	// You can use the following variables :

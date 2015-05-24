@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2.0.3 - 2015-05-22
+
+### Fixed
+- Fixed Rocketeer version constraint
+
 ## 2.0.2 - 2015-01-23
 
 ### Added

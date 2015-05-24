@@ -1,8 +1,8 @@
 <?php
 namespace Rocketeer\Plugins\Slack;
 
-use Crummy\Phlack\Phlack;
 use Illuminate\Container\Container;
+use Maknz\Slack\Client;
 use Rocketeer\Plugins\AbstractNotifier;
 use Rocketeer\Plugins\Notifier;
 
@@ -30,10 +30,7 @@ class RocketeerSlack extends AbstractNotifier
 	public function register(Container $app)
 	{
 		$app->bind('slack', function ($app) {
-			return Phlack::factory(array(
-				'username' => $app['config']->get('rocketeer-slack::username'),
-				'token'    => $app['config']->get('rocketeer-slack::token'),
-			));
+			return new Client($app['config']->get('rocketeer-slack::url'));
 		});
 
 		return $app;
@@ -60,21 +57,20 @@ class RocketeerSlack extends AbstractNotifier
 	 */
 	public function send($message)
 	{
-		$messageBuilder = $this->slack->getMessageBuilder();
-		$room           = $this->config->get('rocketeer-slack::room');
+		/** @var \Maknz\Slack\Message $notification */
+		$notification = $this->slack->createMessage();
+		$room         = $this->config->get('rocketeer-slack::room');
 
 		// Build base message
-		$messageBuilder
+		$notification
 			->setText($message)
 			->setChannel($room);
 
 		// Add optional emoji
 		if ($emoji = $this->config->get('rocketeer-slack::emoji')) {
-			$messageBuilder->setIconEmoji($emoji);
+			$notification->setIcon($emoji);
 		}
 
-		$response = $this->slack->send($messageBuilder->create());
-
-		return $response;
+		$this->slack->sendMessage($notification);
 	}
 }

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 3.0.1 - 2015-06-12
+
+- Compatibility with older Rocketeer 2 versions
+
 ## 3.0.0 - 2015-06-12
 
 ### Changed

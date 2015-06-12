@@ -17,7 +17,7 @@
 	"require": {
 		"php": ">=5.4.0",
 		"illuminate/support": "~4.2",
-		"anahkiasen/rocketeer": "^2.2",
+		"anahkiasen/rocketeer": "^2.0",
 		"maknz/slack": "^1.7"
 	},
 	"autoload": {

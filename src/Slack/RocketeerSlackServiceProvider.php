@@ -9,23 +9,23 @@ use Rocketeer\Facades\Rocketeer;
  */
 class RocketeerSlackServiceProvider extends ServiceProvider
 {
-  /**
-   * Register classes
-   *
-   * @return void
-   */
-  public function register()
-  {
-    // ...
-  }
+	/**
+	 * Register classes
+	 *
+	 * @return void
+	 */
+	public function register()
+	{
+		// ...
+	}
 
-  /**
-   * Boot the plugin
-   *
-   * @return void
-   */
-  public function boot()
-  {
-    Rocketeer::plugin('Rocketeer\Plugins\Slack\RocketeerSlack');
-  }
+	/**
+	 * Boot the plugin
+	 *
+	 * @return void
+	 */
+	public function boot()
+	{
+		Rocketeer::plugin('Rocketeer\Plugins\Slack\RocketeerSlack');
+	}
 }

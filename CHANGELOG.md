@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 3.0.0 - 2015-06-12
+
+### Changed
+- Replace deprecated Slack package with `maknz/slack`
+- The `token` option has been deprecated by Slack and you now need to provide a webhook URL, update your configuration
+
 ## 2.0.3 - 2015-05-22
 
 ### Fixed

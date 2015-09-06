@@ -62,9 +62,12 @@ class RocketeerSlack extends AbstractNotifier
 		$room         = $this->config->get('rocketeer-slack::room');
 
 		// Build base message
-		$notification
-			->setText($message)
-			->setChannel($room);
+		$notification->setChannel($room);
+		if (is_array($message)) {
+			$notification->attach($message);
+		} else {
+			$notification->setText($message);
+		}
 
 		// Add optional emoji
 		if ($emoji = $this->config->get('rocketeer-slack::emoji')) {

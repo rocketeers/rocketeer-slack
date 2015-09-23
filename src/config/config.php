@@ -18,6 +18,6 @@ return array(
 	'after_rollback' => '{1} rolled back branch "{2}" on "{3}" to previous version ({4})',
 
 	// Default emoji to use as the bot's avatar
-	'emoji'   => 'rocket',
+	'emoji'   => ':rocket:',
 
 );

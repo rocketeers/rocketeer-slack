@@ -60,9 +60,11 @@ class RocketeerSlack extends AbstractNotifier
 		/** @var \Maknz\Slack\Message $notification */
 		$notification = $this->slack->createMessage();
 		$room         = $this->config->get('rocketeer-slack::room');
+		$username     = $this->config->get('rocketeer-slack::username');
 
 		// Build base message
 		$notification
+			->setUsername($username)
 			->setText($message)
 			->setChannel($room);
 

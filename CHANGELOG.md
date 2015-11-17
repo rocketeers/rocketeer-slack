@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 3.0.2 - 2015-11-17
+
+### Fixed
+- Fixed unused `username` setting
+- Fixed Rocket emoji
+
 ## 3.0.1 - 2015-06-12
 
 - Compatibility with older Rocketeer 2 versions

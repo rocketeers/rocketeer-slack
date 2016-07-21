@@ -4,18 +4,21 @@ Sends a basic deployment message to a Slack room :
 
 ![Slack](http://i.imgur.com/Dsh6bWd.jpeg)
 
-To setup add this to your `composer.json` and update :
+## Installation
 
-```json
-"anahkiasen/rocketeer-slack": "dev-master"
+```shell
+rocketeer plugin:install anahkiasen/rocketeer-slack
 ```
 
-Then you'll need to set it up, so do `artisan config:publish rocketeer/rocketeer-slack` and complete the configuration in `app/packages/rocketeer/rocketeer-slack/config.php`.
-
-Once that's done add the following to your providers array in `app/config/app.php` :
+Then add this to the `plugins.loaded` array in your configuration:
 
 ```php
-'Rocketeer\Plugins\Slack\RocketeerSlackServiceProvider',
+<?php
+'loaded' => [
+    'Rocketeer\Plugins\Slack\RocketeerSlack',
+],
 ```
 
-And that's pretty much it.
+## Usage
+
+To export the configuration, simply run `rocketeer plugin:config` then edit `.rocketeer/config/plugins/rocketeer-slack`.

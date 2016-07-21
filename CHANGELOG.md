@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 4.0.0 - Unreleased
+
+## Changed
+- Rocketeer 3 compatibility
+
 ## 3.0.2 - 2015-11-17
 
 ### Fixed

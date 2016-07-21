@@ -8,25 +8,18 @@ use Rocketeer\Plugins\Notifier;
 class RocketeerSlack extends AbstractNotifier
 {
     /**
+     * @var string
+     */
+    protected $name = 'rocketeer-slack';
+
+    /**
      * {@inheritdoc}
      */
     public function register()
     {
         $this->container->share('slack', function () {
-            return new Client($this->config->getPluginOption('rocketeer-slack', 'url'));
+            return new Client($this->getPluginOption('url'));
         });
-    }
-
-    /**
-     * Get the default message format
-     *
-     * @param string $message The message handle
-     *
-     * @return string
-     */
-    public function getMessageFormat($message)
-    {
-        return $this->config->getPluginOption('rocketeer-slack', $message);
     }
 
     /**
@@ -38,10 +31,13 @@ class RocketeerSlack extends AbstractNotifier
      */
     public function send($message)
     {
+        /** @var Client $slack */
+        $slack = $this->container->get('slack');
+
         /** @var \Maknz\Slack\Message $notification */
-        $notification = $this->slack->createMessage();
-        $room = $this->config->getPluginOption('rocketeer-slack', 'room');
-        $username = $this->config->getPluginOption('rocketeer-slack', 'username');
+        $notification = $slack->createMessage();
+        $room = $this->getPluginOption('room');
+        $username = $this->getPluginOption('username');
 
         // Build base message
         $notification
@@ -50,10 +46,10 @@ class RocketeerSlack extends AbstractNotifier
             ->setChannel($room);
 
         // Add optional emoji
-        if ($emoji = $this->config->getPluginOption('rocketeer-slack', 'emoji')) {
+        if ($emoji = $this->getPluginOption('emoji')) {
             $notification->setIcon($emoji);
         }
 
-        $this->slack->sendMessage($notification);
+        $slack->sendMessage($notification);
     }
 }

@@ -12,9 +12,8 @@ class RocketeerSlack extends AbstractNotifier
      */
     public function register()
     {
-        $this->configurationFolder = __DIR__.'/../config';
         $this->container->share('slack', function () {
-            return new Client($this->config->get('slack.url'));
+            return new Client($this->config->getPluginOption('rocketeer-slack', 'url'));
         });
     }
 
@@ -27,7 +26,7 @@ class RocketeerSlack extends AbstractNotifier
      */
     public function getMessageFormat($message)
     {
-        return $this->config->get('slack.'.$message);
+        return $this->config->getPluginOption('rocketeer-slack', $message);
     }
 
     /**
@@ -41,8 +40,8 @@ class RocketeerSlack extends AbstractNotifier
     {
         /** @var \Maknz\Slack\Message $notification */
         $notification = $this->slack->createMessage();
-        $room = $this->config->get('slack.room');
-        $username = $this->config->get('slack.username');
+        $room = $this->config->getPluginOption('rocketeer-slack', 'room');
+        $username = $this->config->getPluginOption('rocketeer-slack', 'username');
 
         // Build base message
         $notification
@@ -51,7 +50,7 @@ class RocketeerSlack extends AbstractNotifier
             ->setChannel($room);
 
         // Add optional emoji
-        if ($emoji = $this->config->get('slack.emoji')) {
+        if ($emoji = $this->config->getPluginOption('rocketeer-slack', 'emoji')) {
             $notification->setIcon($emoji);
         }
 

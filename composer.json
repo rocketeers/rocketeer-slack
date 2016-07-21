@@ -5,8 +5,7 @@
 	"keywords": [
 		"rocketeer",
 		"deployment",
-		"slack",
-		"laravel"
+		"slack"
 	],
 	"authors": [
 		{
@@ -15,14 +14,20 @@
 		}
 	],
 	"require": {
-		"php": ">=5.4.0",
-		"illuminate/support": "~4.2",
-		"anahkiasen/rocketeer": "^2.0",
+		"php": ">=5.6.0",
+		"anahkiasen/rocketeer": "3.0.x@dev",
 		"maknz/slack": "^1.7"
 	},
 	"autoload": {
 		"psr-4": {
 			"Rocketeer\\Plugins\\Slack\\": "src/Slack"
+		}
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"extra": {
+		"branch-alias": {
+			"dev-develop": "4.0-dev"
 		}
 	}
 }

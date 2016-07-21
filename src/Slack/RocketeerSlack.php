@@ -1,78 +1,60 @@
 <?php
 namespace Rocketeer\Plugins\Slack;
 
-use Illuminate\Container\Container;
 use Maknz\Slack\Client;
 use Rocketeer\Plugins\AbstractNotifier;
 use Rocketeer\Plugins\Notifier;
 
 class RocketeerSlack extends AbstractNotifier
 {
-	/**
-	 * Setup the plugin
-	 *
-	 * @param Container $app
-	 */
-	public function __construct(Container $app)
-	{
-		parent::__construct($app);
+    /**
+     * {@inheritdoc}
+     */
+    public function register()
+    {
+        $this->configurationFolder = __DIR__.'/../config';
+        $this->container->share('slack', function () {
+            return new Client($this->config->get('slack.url'));
+        });
+    }
 
-		$this->configurationFolder = __DIR__.'/../config';
-	}
+    /**
+     * Get the default message format
+     *
+     * @param string $message The message handle
+     *
+     * @return string
+     */
+    public function getMessageFormat($message)
+    {
+        return $this->config->get('slack.'.$message);
+    }
 
-	/**
-	 * Bind additional classes to the Container
-	 *
-	 * @param Container $app
-	 *
-	 * @return void
-	 */
-	public function register(Container $app)
-	{
-		$app->bind('slack', function ($app) {
-			return new Client($app['config']->get('rocketeer-slack::url'));
-		});
+    /**
+     * Send a given message
+     *
+     * @param string $message
+     *
+     * @return void
+     */
+    public function send($message)
+    {
+        /** @var \Maknz\Slack\Message $notification */
+        $notification = $this->slack->createMessage();
+        $room = $this->config->get('slack.room');
+        $username = $this->config->get('slack.username');
 
-		return $app;
-	}
+        // Build base message
+        $notification
+            ->setUsername($username)
+            ->setText($message)
+            ->setChannel($room);
 
-	/**
-	 * Get the default message format
-	 *
-	 * @param string $message The message handle
-	 *
-	 * @return string
-	 */
-	public function getMessageFormat($message)
-	{
-		return $this->app['config']->get('rocketeer-slack::'.$message);
-	}
+        // Add optional emoji
+        if ($emoji = $this->config->get('slack.emoji')) {
+            $notification->setIcon($emoji);
+        }
 
-	/**
-	 * Send a given message
-	 *
-	 * @param string $message
-	 *
-	 * @return void
-	 */
-	public function send($message)
-	{
-		/** @var \Maknz\Slack\Message $notification */
-		$notification = $this->slack->createMessage();
-		$room         = $this->config->get('rocketeer-slack::room');
-		$username     = $this->config->get('rocketeer-slack::username');
-
-		// Build base message
-		$notification
-			->setUsername($username)
-			->setText($message)
-			->setChannel($room);
-
-		// Add optional emoji
-		if ($emoji = $this->config->get('rocketeer-slack::emoji')) {
-			$notification->setIcon($emoji);
-		}
-
-		$this->slack->sendMessage($notification);
-	}
+        $this->slack->sendMessage($notification);
+    }
 }

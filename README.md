@@ -15,7 +15,7 @@ Then add this to the `plugins.loaded` array in your configuration:
 ```php
 <?php
 'loaded' => [
-    'Rocketeer\Plugins\Slack\RocketeerSlack',
+    'Rocketeer\Plugins\Slack\Slack',
 ],
 ```
 

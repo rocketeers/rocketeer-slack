@@ -5,7 +5,7 @@ use Maknz\Slack\Client;
 use Rocketeer\Plugins\AbstractNotifier;
 use Rocketeer\Plugins\Notifier;
 
-class RocketeerSlack extends AbstractNotifier
+class Slack extends AbstractNotifier
 {
     /**
      * @var string

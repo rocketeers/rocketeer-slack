@@ -20,7 +20,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Rocketeer\\Plugins\\Slack\\": "src/Slack"
+			"Rocketeer\\Plugins\\Slack\\": "src"
 		}
 	},
 	"minimum-stability": "dev",

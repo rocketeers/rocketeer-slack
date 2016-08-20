@@ -1,9 +1,9 @@
 <?php
 namespace Rocketeer\Plugins\Slack;
 
+use Maknz\Slack\Attachment;
 use Maknz\Slack\Client;
 use Rocketeer\Plugins\AbstractNotifier;
-use Rocketeer\Plugins\Notifier;
 
 class Slack extends AbstractNotifier
 {
@@ -29,7 +29,7 @@ class Slack extends AbstractNotifier
      *
      * @return void
      */
-    public function send($message)
+    public function send($message, $type)
     {
         /** @var Client $slack */
         $slack = $this->container->get('slack');
@@ -39,11 +39,21 @@ class Slack extends AbstractNotifier
         $room = $this->getPluginOption('room');
         $username = $this->getPluginOption('username');
 
+        // Build attachment
+        $color = $type === 'halt_deploy' ? 'danger' : 'good';
+        $color = $type === 'before_deploy' ? 'grey' : $color;
+        $attachment = new Attachment([
+            'color' => $color,
+            'text' => $message,
+            'fallback' => $message,
+            'mrkdwn_in' => ['text', 'pretext'],
+        ]);
+
         // Build base message
         $notification
             ->setUsername($username)
-            ->setText($message)
-            ->setChannel($room);
+            ->setChannel($room)
+            ->attach($attachment);
 
         // Add optional emoji
         if ($emoji = $this->getPluginOption('emoji')) {

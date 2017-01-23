@@ -7,6 +7,18 @@ return [
     'username' => '',
     'room' => '',
 
+    // Slack client attributes see https://api.slack.com/docs/messages for usage
+    // Available attributes:
+    // 'channel'
+    // 'username'
+    // 'icon'
+    // 'link_names'
+    // 'unfurl_links'
+    // 'unfurl_media'
+    // 'allow_markdown'
+    // 'markdown_in_attachments'
+    'attributes' => [],
+
     // Message
     // You can use the following variables :
     // 1: User deploying

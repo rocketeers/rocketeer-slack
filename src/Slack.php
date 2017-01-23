@@ -18,7 +18,7 @@ class Slack extends AbstractNotifier
     public function register()
     {
         $this->container->share('slack', function () {
-            return new Client($this->getPluginOption('url'));
+            return new Client($this->getPluginOption('url'), $this->getPluginOption('attributes') ?: []);
         });
     }
 
